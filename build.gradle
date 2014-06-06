@@ -1,106 +1,37 @@
 description = 'Volley on speed'
 
-group = 'dk.yousee.datamanager'
+group = 'dk.slott.supervolley'
 
 buildscript {
-	// This is used bu the dependencies section below.
 	repositories {
 		mavenCentral()
 	}
 
 	dependencies {
-		// This version is tied to the actual gradle bin version number.
-		classpath 'com.android.tools.build:gradle:0.8.+'
-		// Adds task install which installs proejct into local maven repo ".m2/repository/dk/yousee/datamanager/YouSeeVolley/1.0-SNAPSHOT/"
+		classpath 'com.android.tools.build:gradle:0.9.+'
 		classpath 'com.github.dcendents:android-maven-plugin:1.0'
 	}
 }
 
 
-// -library if project is a library project!!!
 apply plugin: 'android-library'
 apply plugin: 'android-maven'
 
-/*
-Closure cl = { task -> println "I'm $task.project.name" }
-task hello << cl
-project(':dependencies:volley') {
-    task hello << cl
-}
-*/
-// Triggered for main projects and sub projects.
-subprojects {
-//	 println "- I depend on water"
-}
-
-
-// evaluationDependsOn(':dependencies:volley')
-
-// This is used bu the dependencies section below.
 repositories {
 	mavenCentral()
-	// Local maven where we currently have googleanalytics and httpclient.
-	// To install type: sudo port install maven3
-	// http://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html
-//	mavenLocal()
-/*
-    maven {
-        url "http://hudson.yousee.idk:8081/nexus/content/repositories/androidThirdparty/"
-
-    }
-    maven {
-        url "http://hudson.yousee.idk:8081/nexus/content/repositories/androidSnapshots/"
-
-    }
-    maven {
-        url "http://hudson.yousee.idk:8081/nexus/content/repositories/androidRelease/"
-
-    }
-*/
-
-//    maven {
-//        url "http://hudson01:8081/nexus/content/repositories/androidThirdparty/"
-//    }
 }
 
-// Must be below "android' plugin.
 dependencies {
-	// This is a reference to the lib in the maven repo.
-	compile 'com.android.support:support-v4:18.0.+'
-	compile 'com.google.code.gson:gson:2.2.+'
-	// To add jar type: mvn install:install-file -Dfile=/Users/mortenslotthansen/git/android_complete/dependencies/YouSeeVolley/libs/libGoogleAnalytics.jar -DgroupId=com.google.analytics -DartifactId=googleanalytics -Dversion=1.0 -Dpackaging=jar
-	//compile 'com.google.analytics:googleanalytics:1.0'
-	compile files('libs/libGoogleAnalytics.jar')
-	// To add jar type: mvn install:install-file -Dfile=/Users/mortenslotthansen/git/android_complete/dependencies/YouSeeVolley/build/bundles/debug/libs/httpclientandroidlib-1.1.2.jar -DgroupId=ch.boye.httpclientandroidlib -DartifactId=httpclient -Dversion=4.2 -Dpackaging=jar
+	compile 'com.android.support:support-v4:19.+'
+	compile 'com.google.code.gson:gson:2.+'
 	compile files('libs/httpclientandroidlib-1.1.2.jar')
-	//compile 'ch.boye.httpclientandroidlib:httpclient:4.2'
-	/**
-	 * http://www.gradle.org/docs/current/userguide/dependency_management.html#sub:project_dependencies
-	 * 50.4.3. Project dependencies
-	 */
-	//compile 'com.google.volley:volley:4.4.1_r1'
-
-//    compile 'com.google.volley:volley:4.4.1_r1@aar'
-
     compile project(':volley')
-//	compile files('dependencies/volley/bin/volley.jar')
 }
 
-/*
-def getVersionName = { ->
-    def stdout = new ByteArrayOutputStream()
-    exec {
-        commandLine 'git', 'describe', '--tags'
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
-}
 
-version = getVersionName()
-*/
 android {
 	compileSdkVersion 19
-	buildToolsVersion "19.0.1"
+	buildToolsVersion "19.1.0"
 
 	sourceSets {
 		main {
@@ -115,6 +46,6 @@ android {
 	}
 
     task wrapper(type: Wrapper) {
-        gradleVersion = '1.10'
+        gradleVersion = '1.11'
     }
 }
