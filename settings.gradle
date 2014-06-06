@@ -1,0 +1,10 @@
+//  A multiproject build must have a settings.gradle file in the root project of the multiproject hierarchy. 
+// http://www.gradle.org/docs/current/userguide/userguide_single.html#sec:settings_file
+
+
+rootProject.name = 'YouSeeVolley'
+
+// path seperator is : to avoid misunderstanding with windows I guess...
+
+include ':volley'
+project(':volley').projectDir = new File('dependencies/volley')
